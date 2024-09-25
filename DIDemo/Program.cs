@@ -12,6 +12,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IStorageService, BlobStorageService>();
 builder.Services.AddScoped<IStorageService, S3StorageService>();
 
+builder.Services.AddKeyedScoped<IQueueService, SQSService>("aws");
+builder.Services.AddKeyedScoped<IQueueService, ServiceBusQueueService>("azure"); 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
